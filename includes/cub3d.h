@@ -1,22 +1,49 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <math.h>
-#include <string.h>
-#include <stdbool.h>
-#include "../libft/libft.h"
-#include "sys/time.h"
-#include "../get_next_line/get_next_line.h"
-#include "structs.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <math.h>
+# include <string.h>
+# include <stdbool.h>
+# include "../libft/libft.h"
+# include "sys/time.h"
+# include "../get_next_line/get_next_line.h"
+# include "structs.h"
 
-int		check_map(int ac, char **av);
+void	print_map(t_map_data *data);
+void	print_textures(t_map_data *data);
+void	print_rgbs(t_map_data *data);
+void	print_everything(t_map_data *data);
+void	err_msg(char *msg);
+
+void	free_pointer(void **lines);
+void	free_data(t_map_data *data);
+void	free_4(char *a, char *b, char *c, char *d);
+
 void	ft_strrev(char *str);
-int		read_map(char *map_file, t_map_data *data);
 int		my_isspace(char c);
 int		str_isdigit(const char *str);
+char	*skip_empty_lines(int fd);
+int		is_valid_direction(char *line);
+size_t	get_max_width(char **map);
+int		**change_to_int(char **map);
+
+int		check_disconnected_map(t_map_data *data, int player_y, int player_x);
+int		check_invalid_chars(t_map_data *data);
+int		check_open_map(t_map_data *data);
+int		check_player(t_map_data *data);
+int		check_headers(t_map_data *data);
+int		check_args(int ac, char **av);
+int		check_textures(char *line, t_map_data *data);
+int		check_first_line(char *first_line, t_map_data *data);
+
+int		map_checks(t_map_data *data);
+int		normalize_map(t_map_data *data);
+void	flood_fill(char **map, int y, int x, int **visited);
+int		read_map(char *map_file, t_map_data *data);
+char	*read_headers(char *line, int fd, t_map_data *data);
 
 #endif

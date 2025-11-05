@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS =  -Wall -Wextra -Werror -Ilibft -Iget_next_line
+CFLAGS =  -Wall -Wextra -Werror -Ilibft -Iget_next_line 
 
 INCLUDES = -Iincludes
 
@@ -9,8 +9,10 @@ GITLIBFT = git@github.com:BahaBerkPancar/Libft-42.git
 LIBFT = libft/libft.a
 GNL = get_next_line/get_next_line.a
 
-SRCS = main.c checks.c ext.c map.c check_textures.c rgbs.c
-
+SRCS = main.c read_header.c  rgbs.c   \
+	checks/checks.c checks/check_textures.c \
+	utils/print.c utils/free.c utils/utils.c utils/ext.c \
+	map_handle/read_map.c map_handle/flood_fill.c map_handle/map_checks.c \
 
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
@@ -71,5 +73,8 @@ full-clean: fclean
 	@rm -rf libft
 	@echo "$(COLOR_BOLD_RED)🌀 You Have Cleared Everything$(COLOR_RESET)"
 
+run: all
+	@./$(NAME) a.cub || true
 
-.PHONY: all clean fclean re clone
+
+.PHONY: all clean fclean re clone run
