@@ -1,5 +1,22 @@
 #include "cub3d.h"
 
+int	str_isdigit(const char *str)
+{
+	int	i;
+
+	if (!str || !*str)
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit((unsigned char)str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+
 void	ft_strrev(char *str)
 {
 	int		i;
