@@ -9,10 +9,15 @@ enum DIRECTIONS{
 	EASTH,
 	WEST,
 };
+
 enum RGBS{
+	RED,
+	GREEN,
+	BLUE,
 	FLOOR,
 	CEILING,
 };
+
 
 typedef struct s_map_data
 {
@@ -21,8 +26,8 @@ typedef struct s_map_data
 	char	*west_xpm;
 	char	*south_xpm;
 
-	char	*ceiling;
-	char	*floor;
+	int		ceiling[3];
+	int		floor[3];
 
 	char	*map;
 

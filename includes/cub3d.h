@@ -17,5 +17,6 @@ int		check_map(int ac, char **av);
 void	ft_strrev(char *str);
 int		read_map(char *map_file, t_map_data *data);
 int		my_isspace(char c);
+int		str_isdigit(const char *str);
 
 #endif

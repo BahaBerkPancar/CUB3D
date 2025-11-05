@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS =  -Wall -Wextra -Werror -Ilibft -Iget_next_line
 
@@ -9,7 +9,7 @@ GITLIBFT = git@github.com:BahaBerkPancar/Libft-42.git
 LIBFT = libft/libft.a
 GNL = get_next_line/get_next_line.a
 
-SRCS = main.c checks.c ext.c map.c check_textures.c 
+SRCS = main.c checks.c ext.c map.c check_textures.c rgbs.c
 
 
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)

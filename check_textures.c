@@ -73,3 +73,37 @@ int	check_textures(char *line, t_map_data *data)
 		return (ft_putstr_fd("Error: Reaccuring Direction\n", 2), free(save), free(path), free(tmp), 1);
 	return (free(save), free(path), free(tmp), 0);
 }
+
+
+// char *read_headers(char *line, int fd, t_map_data *data) 
+// {
+//     int textures = 0, colors = 0;
+//     while (line) {
+//         int i = 0;
+//         while (line[i] && my_isspace(line[i])) i++;
+//         if (!line[i]) { free(line); line = get_next_line(fd); continue; }
+
+//         if (line[i] == '1' || line[i] == '0') return line; // map begins
+
+//         if (!ft_strncmp(&line[i], "NO", 2) || !ft_strncmp(&line[i], "SO", 2) ||
+//             !ft_strncmp(&line[i], "WE", 2) || !ft_strncmp(&line[i], "EA", 2)) {
+//             if (check_textures(&line[i], data)) { free(line); return NULL; }
+//             textures++;
+//         } else if (line[i] == 'F' || line[i] == 'C') {
+//             if (check_first_line(ft_strdup(&line[i]), data)) { free(line); return NULL; }
+//             colors++;
+//         } else {
+//             ft_putstr_fd("Error: Unknown header\n", 2);
+//             free(line); return NULL;
+//         }
+
+//         if (textures == 4 && colors == 2) {
+//             free(line);
+//             do { line = get_next_line(fd); } while (line && (!line[0] || my_isspace(line[0])));
+//             return line;
+//         }
+//         free(line);
+//         line = get_next_line(fd);
+//     }
+//     return NULL;
+// }
