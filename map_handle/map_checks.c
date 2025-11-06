@@ -48,8 +48,7 @@ int	check_disconnected_map(t_map_data *data, int player_y, int player_x)
 				return (free_pointer((void **)board),
 					err_msg("Map has disconnected Area"), 1);
 	}
-	free_pointer((void **)board);
-	return (0);
+	return (free_pointer((void **)board), 0);
 }
 
 int	check_invalid_chars(t_map_data *data)
@@ -96,7 +95,7 @@ int	check_open_map(t_map_data *data)
 					|| !m[y][x + 1] || !m[y - 1][x] || !m[y + 1][x]
 					|| m[y][x - 1] == ' ' || m[y][x + 1] == ' '
 					|| m[y - 1][x] == ' ' || m[y + 1][x] == ' ')
-					return (printf("y = %d, x = %d\n", y, x), err_msg("Map not closed"), 1);
+					return (err_msg("Map not closed"), 1);
 			}
 			x++;
 		}
