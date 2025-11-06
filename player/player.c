@@ -53,6 +53,19 @@ void	print_player(t_window *mlx)
 		player_y - player_size / 2, color);
 }
 
+void	set_player_ints(t_window *mlx, int x, int y, char c)
+{
+	mlx->player.x = x + 0.5;
+	mlx->player.y = y + 0.5;
+	mlx->player.move_speed = 0.2;
+	mlx->player.rot_speed = 0.05;
+	set_player_direction(&mlx->player, c);
+	mlx->player_start_x = mlx->player.x;
+	mlx->player_start_y = mlx->player.y;
+	mlx->player_start_dir_x = mlx->player.dir_x;
+	mlx->player_start_dir_y = mlx->player.dir_y;
+}
+
 void	init_player(t_window *mlx)
 {
 	int		y;
@@ -68,16 +81,7 @@ void	init_player(t_window *mlx)
 			c = mlx->map[y][x];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			{
-				mlx->player.x = x + 0.5;
-				mlx->player.y = y + 0.5;
-				mlx->player.move_speed = 0.2;
-				mlx->player.rot_speed = 0.05;
-				set_player_direction(&mlx->player, c);
-				// **store starting position & direction**
-				mlx->player_start_x = mlx->player.x;
-				mlx->player_start_y = mlx->player.y;
-				mlx->player_start_dir_x = mlx->player.dir_x;
-				mlx->player_start_dir_y = mlx->player.dir_y;
+				set_player_ints(mlx, x, y, c);
 				mlx->map[y][x] = '0';
 				return ;
 			}
