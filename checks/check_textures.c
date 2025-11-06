@@ -36,13 +36,13 @@ int	is_valid_texture(char *line)
 void	save_textures(char *line, t_map_data *data, int type)
 {
 	if (type == NORTH)
-		data->north_xpm = ft_strdup(line);
+		data->north_file = ft_strdup(line);
 	else if (type == EASTH)
-		data->easth_xpm = ft_strdup(line);
+		data->easth_file = ft_strdup(line);
 	else if (type == WEST)
-		data->west_xpm = ft_strdup(line);
+		data->west_file = ft_strdup(line);
 	else if (type == SOUTH)
-		data->south_xpm = ft_strdup(line);
+		data->south_file = ft_strdup(line);
 }
 
 int	check_textures(char *line, t_map_data *data)
@@ -61,13 +61,13 @@ int	check_textures(char *line, t_map_data *data)
 	free(tmp);
 	tmp = ft_strtrim(path, " \n\r\t");
 	save = ft_strtrim(line, " \n\r\t");
-	if (save[0] == 'N' && !data->north_xpm)
+	if (save[0] == 'N' && !data->north_file)
 		save_textures(tmp, data, NORTH);
-	else if (save[0] == 'W' && !data->west_xpm)
+	else if (save[0] == 'W' && !data->west_file)
 		save_textures(tmp, data, WEST);
-	else if (save[0] == 'E' && !data->easth_xpm)
+	else if (save[0] == 'E' && !data->easth_file)
 		save_textures(tmp, data, EASTH);
-	else if (save[0] == 'S' && !data->south_xpm)
+	else if (save[0] == 'S' && !data->south_file)
 		save_textures(tmp, data, SOUTH);
 	else
 		return (free_4(save, path, tmp, NULL), 1);

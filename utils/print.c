@@ -16,10 +16,10 @@ void	print_map(t_map_data *data)
 
 void	print_textures(t_map_data *data)
 {
-	printf("North Texture: %s\n", data->north_xpm);
-	printf("South Texture: %s\n", data->south_xpm);
-	printf("West Texture: %s\n", data->west_xpm);
-	printf("East Texture: %s\n", data->easth_xpm);
+	printf("North Texture: %s\n", data->north_file);
+	printf("South Texture: %s\n", data->south_file);
+	printf("West Texture: %s\n", data->west_file);
+	printf("East Texture: %s\n", data->easth_file);
 }
 
 void	print_rgbs(t_map_data *data)

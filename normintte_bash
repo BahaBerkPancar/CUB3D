@@ -1,0 +1,5 @@
+echo 'alias norm='\''find . -type f \( -name "*.c" -o -name "*.h" \) ! -path "./minilibx_opengl_20191021/*" ! -path "./minilibx-linux.tgz/*" -exec norminette {} +'\''' >> ~/.bashrc
+source ~/.bashrc
+
+echo 'alias norm='\''find . -type f \( -name "*.c" -o -name "*.h" \) ! -path "./minilibx_opengl_20191021/*" ! -path "./minilibx-linux.tgz/*" -exec norminette {} +'\''' >> ~/.zshrc
+source ~/.zshrc

@@ -41,3 +41,28 @@ size_t	get_max_width(char **map)
 	}
 	return (max);
 }
+
+char	**copy_map(t_map_data *data, t_window *mlx)
+{
+	char	**copy;
+	int		y;
+
+	copy = malloc(sizeof(char *) * (mlx->map_height + 1));
+	if (!copy)
+		return (NULL);
+	y = 0;
+	while (y < mlx->map_height)
+	{
+		copy[y] = ft_strdup(data->map[y]);
+		if (!copy[y])
+		{
+			while (y--)
+				free(copy[y]);
+			free(copy);
+			return (NULL);
+		}
+		y++;
+	}
+	copy[mlx->map_height] = NULL;
+	return (copy);
+}
