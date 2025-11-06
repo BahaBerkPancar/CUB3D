@@ -32,8 +32,8 @@ int	check_args(int ac, char **av)
 
 int	check_headers(t_map_data *data)
 {
-	if (data->north_xpm == NULL || data->south_xpm == NULL
-		|| data->west_xpm == NULL || data->easth_xpm == NULL)
+	if (data->north_file == NULL || data->south_file == NULL
+		|| data->west_file == NULL || data->easth_file == NULL)
 		return (err_msg("Missing Textures"), 1);
 	if (!data->floor_set || !data->ceiling_set)
 		return (err_msg("Missing Colors"), 1);

@@ -67,23 +67,8 @@ int	read_map(char *map_file, t_map_data *data)
 	return (load_map_lines(fd, line, data));
 }
 
-// void	trim_map_lines(t_map_data *data)
-// {
-// 	int		y;
-// 	char	*tmp;
-
-// 	y = -1;
-// 	while (data->map[++y])
-// 	{
-// 		tmp = ft_strtrim(data->map[y], " ");
-// 		free(data->map[y]);
-// 		data->map[y] = tmp;
-// 	}
-// }
-
 int	map_checks(t_map_data *data)
 {
-	// trim_map_lines(data);
 	if (normalize_map(data))
 		return (1);
 	if (check_open_map(data))

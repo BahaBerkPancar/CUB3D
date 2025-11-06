@@ -6,10 +6,10 @@ int	init_data(t_map_data *data)
 	data->floor_set = 0;
 	data->ceiling_set = 0;
 	data->rgb_index = 0;
-	data->north_xpm = NULL;
-	data->south_xpm = NULL;
-	data->west_xpm = NULL;
-	data->easth_xpm = NULL;
+	data->north_file = NULL;
+	data->south_file = NULL;
+	data->west_file = NULL;
+	data->easth_file = NULL;
 	data->floor[0] = -1;
 	data->floor[1] = -1;
 	data->floor[2] = -1;
@@ -38,11 +38,16 @@ t_map_data	*handle_map(int ac, char **av)
 int	main(int ac, char **av)
 {
 	t_map_data	*data;
+	t_window	*mlx;
 
 	data = handle_map(ac, av);
 	if (!data || map_checks(data))
-		return (1);
+		return (free_data(data), 1);
+	mlx = init_mlx(data);
+	if (!mlx)
+		return (free_data(data), 1);
 	print_everything(data);
 	free_data(data);
+	start_window(mlx);
 	return (printf("Map read successfully\n"), 0);
 }

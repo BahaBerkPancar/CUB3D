@@ -16,14 +16,14 @@ void	free_data(t_map_data *data)
 		}
 		free(data->map);
 	}
-	if (data->north_xpm)
-		free(data->north_xpm);
-	if (data->south_xpm)
-		free(data->south_xpm);
-	if (data->west_xpm)
-		free(data->west_xpm);
-	if (data->easth_xpm)
-		free(data->easth_xpm);
+	if (data->north_file)
+		free(data->north_file);
+	if (data->south_file)
+		free(data->south_file);
+	if (data->west_file)
+		free(data->west_file);
+	if (data->easth_file)
+		free(data->easth_file);
 	free(data);
 }
 
@@ -49,4 +49,23 @@ void	free_4(char *a, char *b, char *c, char *d)
 		free(c);
 	if (d)
 		free(d);
+}
+
+void	clean_mlx(t_window *mlx)
+{
+	if (!mlx)
+		return ;
+	if (mlx->map)
+		free_pointer((void **)mlx->map);
+	if (mlx->north_xpm)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->north_xpm);
+	if (mlx->easth_xpm)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->easth_xpm);
+	if (mlx->west_xpm)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->west_xpm);
+	if (mlx->south_xpm)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->south_xpm);
+	if (mlx->win_ptr)
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	free(mlx);
 }

@@ -66,7 +66,7 @@ int	check_invalid_chars(t_map_data *data)
 		{
 			if (m[y][x] != '0' && m[y][x] != '1' && m[y][x] != ' ' &&
 				m[y][x] != 'N' && m[y][x] != 'S' &&
-				m[y][x] != 'E' && m[y][x] != 'W' && m[y][x] != '\n') //\n might change
+				m[y][x] != 'E' && m[y][x] != 'W' && m[y][x] != '\n')
 				return (err_msg("Invalid character in map"), 1);
 			x++;
 		}
