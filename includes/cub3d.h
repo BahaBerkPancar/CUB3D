@@ -69,10 +69,13 @@ void		print_minimap(t_window *mlx);
 
 void		print_player(t_window *mlx);
 void		init_player(t_window *mlx);
+void		reset_player(t_window *mlx);
 
 void		move_backward(t_window *mlx);
 void		move_forward(t_window *mlx);
 void		move_right(t_window *mlx);
 void		move_left(t_window *mlx);
+void		rotate_right(t_window *mlx);
+void		rotate_left(t_window *mlx);
 
 #endif

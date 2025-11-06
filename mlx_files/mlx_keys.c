@@ -8,7 +8,7 @@ int	handle_close(t_window *mlx)
 	return (0);
 }
 
-int	update_game(t_window *mlx)//this is temprory it will ben changed after 3d image 
+int	update_game(t_window *mlx)
 {
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	if (mlx->move_forward)
@@ -20,9 +20,9 @@ int	update_game(t_window *mlx)//this is temprory it will ben changed after 3d im
 	if (mlx->move_right)
 		move_right(mlx);
 	if (mlx->rotate_left)
-		printf("Rotating left\n");
+		rotate_left(mlx);
 	if (mlx->rotate_right)
-		printf("Rotating right\n");
+		rotate_right(mlx);
 	if (mlx->show_minimap)
 	{
 		print_minimap(mlx);
@@ -31,7 +31,7 @@ int	update_game(t_window *mlx)//this is temprory it will ben changed after 3d im
 	return (0);
 }
 
-int	handle_keypress(int keycode, t_window *mlx) // codes might need to change in linux
+int	handle_keypress(int keycode, t_window *mlx)
 {
 	if (keycode == 53)
 		handle_close(mlx);
@@ -49,12 +49,13 @@ int	handle_keypress(int keycode, t_window *mlx) // codes might need to change in
 		mlx->rotate_right = 1;
 	if (keycode == 48)
 		mlx->show_minimap = 1;
+	if (keycode == 35)
+		reset_player(mlx);
 	return (0);
 }
 
 int	handle_keyrelease(int keycode, t_window *mlx) // codes might need to change in linux
 {
-
 	if (keycode == 13 || keycode == 126)
 		mlx->move_forward = 0;
 	if (keycode == 1 || keycode == 125)

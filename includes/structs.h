@@ -71,7 +71,7 @@ typedef struct s_window
 	int			map_height;
 	int			tile_size;
 
-	//moveme	nt flags
+	//movement flags
 	int			move_forward;
 	int			move_backward;
 	int			move_left;
@@ -80,6 +80,11 @@ typedef struct s_window
 	int			rotate_left;
 	int			rotate_right;
 
+	//starting positions
+	int			player_start_x;
+	int			player_start_y;
+	int			player_start_dir_x;
+	int			player_start_dir_y;
 	t_player	player;
 }	t_window;
 
