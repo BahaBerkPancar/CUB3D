@@ -77,7 +77,7 @@ t_window	*init_mlx(t_map_data *data)
 		return (free(mlx), err_msg("Map copy failed"), NULL);
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
-		return (free(mlx), NULL);
+		return (clean_mlx(mlx), NULL);
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
 			mlx->win_width, mlx->win_height, "cub3D");
 	if (!mlx->win_ptr)

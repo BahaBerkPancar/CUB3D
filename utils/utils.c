@@ -18,7 +18,12 @@ int	**change_to_int(char **map)
 		len = ft_strlen(map[y]);
 		board[y] = ft_calloc(len, sizeof(int));
 		if (!board[y])
+		{
+			while (y--)
+				free(board[y]);
+			free(board);
 			return (NULL);
+		}
 	}
 	board[y] = NULL;
 	return (board);
