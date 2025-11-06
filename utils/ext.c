@@ -49,33 +49,29 @@ int	my_isspace(char c)
 		|| c == '\f');
 }
 
+int	is_all_space(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!my_isspace(line[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 char	*skip_empty_lines(int fd)
 {
 	char	*line;
 
 	line = get_next_line(fd);
-	while (line && (!line[0]))
+	while (line && is_all_space(line))
 	{
 		free(line);
 		line = get_next_line(fd);
 	}
 	return (line);
-}
-
-size_t	get_max_width(char **map)
-{
-	size_t	max;
-	size_t	len;
-	int		i;
-
-	i = 0;
-	max = 0;
-	while (map && map[i])
-	{
-		len = ft_strlen(map[i]);
-		if (len > max)
-			max = len;
-		i++;
-	}
-	return (max);
 }

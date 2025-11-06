@@ -44,6 +44,5 @@ int	main(int ac, char **av)
 		return (1);
 	print_everything(data);
 	free_data(data);
-	printf("Map read successfully\n");
-	return (0);
+	return (printf("Map read successfully\n"), 0);
 }

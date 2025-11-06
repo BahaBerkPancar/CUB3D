@@ -23,3 +23,21 @@ int	**change_to_int(char **map)
 	board[y] = NULL;
 	return (board);
 }
+
+size_t	get_max_width(char **map)
+{
+	size_t	max;
+	size_t	len;
+	int		i;
+
+	i = 0;
+	max = 0;
+	while (map && map[i])
+	{
+		len = ft_strlen(map[i]);
+		if (len > max)
+			max = len;
+		i++;
+	}
+	return (max);
+}
