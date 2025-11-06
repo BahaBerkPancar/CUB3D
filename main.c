@@ -49,5 +49,6 @@ int	main(int ac, char **av)
 	print_everything(data);
 	free_data(data);
 	start_window(mlx);
+	clean_mlx(mlx);
 	return (printf("Map read successfully\n"), 0);
 }

@@ -21,7 +21,7 @@ void		print_everything(t_map_data *data);
 void		err_msg(char *msg);
 
 void		free_data(t_map_data *data);
-void		clean_mlx(t_window *win);
+void		clean_mlx(t_window *mlx);
 void		free_pointer(void **lines);
 void		free_4(char *a, char *b, char *c, char *d);
 
