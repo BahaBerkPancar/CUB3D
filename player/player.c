@@ -1,5 +1,19 @@
 #include "../includes/cub3d.h"
 
+void	reset_player(t_window *mlx)
+{
+	mlx->player.x = mlx->player_start_x;
+	mlx->player.y = mlx->player_start_y;
+	mlx->player.dir_x = mlx->player_start_dir_x;
+	mlx->player.dir_y = mlx->player_start_dir_y;
+	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	if (mlx->show_minimap)
+	{
+		print_minimap(mlx);
+		print_player(mlx);
+	}
+}
+
 void	set_player_direction(t_player *player, char dir)
 {
 	if (dir == 'N')
@@ -56,9 +70,14 @@ void	init_player(t_window *mlx)
 			{
 				mlx->player.x = x + 0.5;
 				mlx->player.y = y + 0.5;
-				mlx->player.move_speed = 0.1;
+				mlx->player.move_speed = 0.2;
 				mlx->player.rot_speed = 0.05;
 				set_player_direction(&mlx->player, c);
+				// **store starting position & direction**
+				mlx->player_start_x = mlx->player.x;
+				mlx->player_start_y = mlx->player.y;
+				mlx->player_start_dir_x = mlx->player.dir_x;
+				mlx->player_start_dir_y = mlx->player.dir_y;
 				mlx->map[y][x] = '0';
 				return ;
 			}
