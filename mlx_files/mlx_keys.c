@@ -33,23 +33,23 @@ int	update_game(t_window *mlx)
 
 int	handle_keypress(int keycode, t_window *mlx)
 {
-	if (keycode == 53)
+	if (keycode == KEY_ESC)
 		handle_close(mlx);
-	if (keycode == 13 || keycode == 126)
+	if (keycode == KEY_W || keycode == KEY_UP)
 		mlx->move_forward = 1;
-	if (keycode == 1 || keycode == 125)
+	if (keycode == KEY_S || keycode == KEY_DOWN)
 		mlx->move_backward = 1;
-	if (keycode == 0)
+	if (keycode == KEY_A)
 		mlx->move_left = 1;
-	if (keycode == 2)
+	if (keycode == KEY_D)
 		mlx->move_right = 1;
-	if (keycode == 123)
+	if (keycode == KEY_LEFT)
 		mlx->rotate_left = 1;
-	if (keycode == 124)
+	if (keycode == KEY_RIGHT)
 		mlx->rotate_right = 1;
-	if (keycode == 48)
+	if (keycode == KEY_TAB)
 		mlx->show_minimap = 1;
-	if (keycode == 35)
+	if (keycode == KEY_P)
 		reset_player(mlx);
 	return (0);
 }

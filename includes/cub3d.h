@@ -7,6 +7,18 @@
 # define COLOR_PLAYER	0xFFFFFF
 # define COLOR_BORDER	0x333333
 
+# define KEY_ESC        53
+# define KEY_W          13
+# define KEY_UP         126
+# define KEY_S          1
+# define KEY_DOWN       125
+# define KEY_A          0
+# define KEY_D          2
+# define KEY_LEFT       123
+# define KEY_RIGHT      124
+# define KEY_TAB        48
+# define KEY_P          35
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
