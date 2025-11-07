@@ -16,6 +16,12 @@ void	set_mlx_ints(t_window	*mlx, t_map_data *data)
 	mlx->win_height = 600;
 	mlx->win_width = 800;
 	mlx->tile_size = 10;
+	mlx->ceiling[0] = data->ceiling[0];
+	mlx->ceiling[1] = data->ceiling[1];
+	mlx->ceiling[2] = data->ceiling[2];
+	mlx->floor[0] = data->floor[0];
+	mlx->floor[1] = data->floor[1];
+	mlx->floor[2] = data->floor[2];
 	if (mlx->map_height * mlx->tile_size > mlx->win_height)
 		mlx->tile_size = mlx->win_height / mlx->map_height;
 }
