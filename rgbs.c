@@ -88,13 +88,15 @@ int	check_first_line(char *first_line, t_map_data *data)
 	{
 		data->floor_set = 1;
 		if (save_rgbs(trimmed, data, FLOOR))
-			return (err_msg("Invalid Floor RGB value"), 1);
+			return (free(trimmed),
+				err_msg("Invalid Floor RGB value"), 1);
 	}
 	else if (first_line[0] == 'C')
 	{
 		data->ceiling_set = 1;
 		if (save_rgbs(trimmed, data, CEILING))
-			return (err_msg("Invalid Ceiling RGB value"), 1);
+			return (free(trimmed),
+				err_msg("Invalid Ceiling RGB value"), 1);
 	}
 	return (free(trimmed), 0);
 }
