@@ -21,19 +21,18 @@ static int	save_rgb_value(t_map_data *data, int type, int color, int value)
 	return (0);
 }
 
-static int	parse_rgb_part(char *tmp, int *i, int *j,
-	t_map_data *data, int type)//////////////////////////////
+static int	parse_rgb_part(char *tmp, int **x, t_map_data *data, int type)
 {
 	int		len;
 	char	*substr;
 	char	*part;
 	int		value;
 
-	if (tmp[*i] == ',')
-		len = *i - *j;
+	if (tmp[*x[0]] == ',')
+		len = *x[0] - *x[1];
 	else
-		len = *i - *j + 1;
-	substr = ft_substr(tmp, *j, len);
+		len = *x[0] - *x[1] + 1;
+	substr = ft_substr(tmp, *x[1], len);
 	if (!substr)
 		return (1);
 	part = ft_strtrim(substr, " \n\r\t");
@@ -44,9 +43,9 @@ static int	parse_rgb_part(char *tmp, int *i, int *j,
 	free(part);
 	save_rgb_value(data, type, data->rgb_index, value);
 	data->rgb_index++;
-	if (tmp[*i] == ',' && tmp[*i + 1] == '\0')
+	if (tmp[*x[0]] == ',' && tmp[*x[0] + 1] == '\0')
 		return (1);
-	*j = *i + 1;
+	*x[1] = *x[0] + 1;
 	return (0);
 }
 
@@ -54,6 +53,7 @@ static int	save_rgbs(char *line, t_map_data *data, int type)
 {
 	int		i;
 	int		j;
+	int		*x[2];
 	char	*tmp;
 
 	i = -1;
@@ -62,11 +62,13 @@ static int	save_rgbs(char *line, t_map_data *data, int type)
 	tmp = ft_strdup(line);
 	if (!tmp)
 		return (1);
+	x[0] = &i;
+	x[1] = &j;
 	while (tmp[++i])
 	{
 		if (tmp[i] == ',' || tmp[i + 1] == '\0')
 		{
-			if (parse_rgb_part(tmp, &i, &j, data, type))
+			if (parse_rgb_part(tmp, x, data, type))
 				return (free(tmp), 1);
 		}
 	}

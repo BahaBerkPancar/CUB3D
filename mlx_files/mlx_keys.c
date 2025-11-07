@@ -54,7 +54,8 @@ int	handle_keypress(int keycode, t_window *mlx)
 	return (0);
 }
 
-int	handle_keyrelease(int keycode, t_window *mlx) // codes might need to change in linux
+// codes might need to change in linux
+int	handle_keyrelease(int keycode, t_window *mlx)
 {
 	if (keycode == 13 || keycode == 126)
 		mlx->move_forward = 0;
