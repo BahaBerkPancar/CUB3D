@@ -1,6 +1,7 @@
 #include "../includes/cub3d.h"
 
-int	put_image_to_window(t_window *mlx)// this will completely change it is just to test
+// this will completely change it is just to test
+int	put_image_to_window(t_window *mlx)
 {
 	void	*images[4];
 	int		x;

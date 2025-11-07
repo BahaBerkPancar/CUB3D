@@ -46,6 +46,7 @@ int	main(int ac, char **av)
 	mlx = init_mlx(data);
 	if (!mlx)
 		return (free_data(data), 1);
+	// print_everything(data);
 	free_data(data);
 	start_window(mlx);
 	clean_mlx(mlx);
