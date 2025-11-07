@@ -80,6 +80,10 @@ typedef struct s_window
 	int			rotate_left;
 	int			rotate_right;
 
+	// rgbs
+	int			ceiling[3];
+	int			floor[3];
+
 	//starting positions
 	int			player_start_x;
 	int			player_start_y;
