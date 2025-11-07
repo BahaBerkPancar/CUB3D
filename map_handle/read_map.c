@@ -67,8 +67,26 @@ int	read_map(char *map_file, t_map_data *data)
 	return (load_map_lines(fd, line, data));
 }
 
+static void	trim_empty_lines_bottom(t_map_data *data)
+{
+	int	y;
+	int	new_height;
+
+	y = 0;
+	while (data->map[y])
+		y++;
+	new_height = y;
+	while (new_height > 0 && data->map[new_height - 1][0] == '\0')
+	{
+		free(data->map[new_height - 1]);
+		new_height--;
+	}
+	data->map[new_height] = NULL;
+}
+
 int	map_checks(t_map_data *data)
 {
+	trim_empty_lines_bottom(data);
 	if (normalize_map(data))
 		return (1);
 	if (check_open_map(data))
