@@ -25,3 +25,15 @@ void	rotate_right(t_window *mlx)
 	mlx->player.dir_y = old_dir_x * sin(theta)
 		+ mlx->player.dir_y * cos(theta);
 }
+
+void	set_player_speed(int keycode, t_window *mlx)
+{
+	if (keycode == KEY_1)
+		mlx->player.move_speed = 0.01;
+	else if (keycode == KEY_2)
+		mlx->player.move_speed = 0.05;
+	else if (keycode == KEY_3)
+		mlx->player.move_speed = 0.10;
+	else if (keycode == KEY_4)
+		mlx->player.move_speed = 1.00;
+}

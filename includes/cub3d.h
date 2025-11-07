@@ -2,6 +2,7 @@
 # define CUB3D_H
 
 # define COLOR_WALL		0xFF0000
+# define COLOR_WHITE	0xFF0000
 # define COLOR_FLOOR	0x000000
 # define COLOR_SPACE	0x111111
 # define COLOR_PLAYER	0xFFFFFF
@@ -18,6 +19,10 @@
 # define KEY_RIGHT      124
 # define KEY_TAB        48
 # define KEY_P          35
+# define KEY_1			18
+# define KEY_2			19
+# define KEY_3			20
+# define KEY_4			21
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -82,6 +87,7 @@ void		print_minimap(t_window *mlx);
 void		print_player(t_window *mlx);
 void		init_player(t_window *mlx);
 void		reset_player(t_window *mlx);
+void		set_player_speed(int keycode, t_window *mlx);
 
 void		move_backward(t_window *mlx);
 void		move_forward(t_window *mlx);

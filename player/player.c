@@ -6,6 +6,7 @@ void	reset_player(t_window *mlx)
 	mlx->player.y = mlx->player_start_y;
 	mlx->player.dir_x = mlx->player_start_dir_x;
 	mlx->player.dir_y = mlx->player_start_dir_y;
+	mlx->player.move_speed = 0.05;
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	if (mlx->show_minimap)
 	{

@@ -51,6 +51,8 @@ int	handle_keypress(int keycode, t_window *mlx)
 		mlx->show_minimap = 1;
 	if (keycode == KEY_P)
 		reset_player(mlx);
+	if (keycode >= KEY_1 && keycode <= KEY_4)
+		set_player_speed(keycode, mlx);
 	return (0);
 }
 
