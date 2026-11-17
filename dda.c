@@ -52,17 +52,17 @@ static void	perform_dda_loop(t_window *win, double ray_dir_x,
 		{
 			dda->side_dist_x += dda->delta_dist_x;
 			dda->map_x += dda->step_x;
-			dda->side = EASTH;
+			dda->side = WEST;
 			if (ray_dir_x < 0)
-				dda->side = WEST;
+				dda->side = EASTH;
 		}
 		else
 		{
 			dda->side_dist_y += dda->delta_dist_y;
 			dda->map_y += dda->step_y;
-			dda->side = SOUTH;
+			dda->side = NORTH;
 			if (ray_dir_y < 0)
-				dda->side = NORTH;
+				dda->side = SOUTH;
 		}
 		if (win->map[dda->map_y][dda->map_x] == '1')
 			hit = 1;
@@ -84,6 +84,8 @@ static double	calc_perp_dist(t_window *win, double ray_dir_x,
 	else
 		wall_x = win->player.x + perp_wall_dist * ray_dir_x;
 	wall_x -= floor(wall_x);
+	if (dda->side == WEST || dda->side == SOUTH)
+		wall_x = 1.0 - wall_x;
 	*hit_x = wall_x;
 	return (perp_wall_dist);
 }

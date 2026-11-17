@@ -10,7 +10,6 @@ int	handle_close(t_window *mlx)
 
 int	update_game(t_window *mlx)
 {
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	if (mlx->move_forward)
 		move_forward(mlx);
 	if (mlx->move_backward)
@@ -23,6 +22,7 @@ int	update_game(t_window *mlx)
 		rotate_left(mlx);
 	if (mlx->rotate_right)
 		rotate_right(mlx);
+	render_frame(mlx);
 	if (mlx->show_minimap)
 	{
 		print_minimap(mlx);

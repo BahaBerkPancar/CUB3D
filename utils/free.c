@@ -65,6 +65,8 @@ void	clean_mlx(t_window *mlx)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->west_xpm);
 	if (mlx->south_xpm)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->south_xpm);
+	if (mlx->img)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->img);
 	if (mlx->win_ptr)
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	free(mlx);

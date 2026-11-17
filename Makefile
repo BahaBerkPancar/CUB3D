@@ -3,11 +3,11 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Ilibft -Iget_next_line -Iincludes
 
 OBJDIR = .obj
-GITLIBFT = git@github.com:BahaBerkPancar/Libft-42.git
+GITLIBFT = https://github.com/BahaBerkPancar/Libft-42.git
 LIBFT = libft/libft.a
 GNL = get_next_line/get_next_line.a
 
-SRCS = main.c read_header.c rgbs.c \
+SRCS = main.c read_header.c rgbs.c dda.c render.c render_utils.c \
 	checks/checks.c checks/check_textures.c \
 	utils/print.c utils/free.c utils/utils.c utils/ext.c \
 	map_handle/read_map.c map_handle/flood_fill.c map_handle/map_checks.c \
