@@ -32,6 +32,17 @@ typedef struct s_player
 	double	rot_speed;
 }	t_player;
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_texture;
+
 typedef struct s_map_data
 {
 	char		*north_file;
@@ -61,6 +72,17 @@ typedef struct s_window
 	void		*easth_xpm;
 	void		*west_xpm;
 	void		*south_xpm;
+
+	// textures and frame buffer
+	t_texture	north;
+	t_texture	easth;
+	t_texture	west;
+	t_texture	south;
+	void		*img;
+	char		*img_addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 
 	//sizes	
 	int			img_width;

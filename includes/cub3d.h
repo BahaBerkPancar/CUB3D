@@ -76,6 +76,8 @@ char		**copy_map(t_map_data *data, t_window *mlx);
 t_window	*init_mlx(t_map_data *data);
 void		start_window(t_window *mlx);
 int			create_xpm_image(t_window *mlx, t_map_data *data);
+int			load_texture(t_window *mlx, t_texture *tex, char *file, char *msg);
+int			create_frame(t_window *mlx);
 void		draw_tile(t_window *mlx, int x, int y, int color);
 
 int			handle_keyrelease(int keycode, t_window *mlx);
@@ -83,6 +85,13 @@ int			handle_keypress(int keycode, t_window *mlx);
 int			handle_close(t_window *mlx);
 int			update_game(t_window *mlx);
 void		print_minimap(t_window *mlx);
+
+double		perform_dda(t_window *win, double ray_dir_x, double ray_dir_y,
+				int *side, double *hit_x);
+void		render_frame(t_window *win);
+int			rgb_to_int(int rgb[3]);
+int			get_texture_pixel(t_texture *tex, int x, int y);
+void		put_pixel(t_window *win, int x, int y, int color);
 
 void		print_player(t_window *mlx);
 void		init_player(t_window *mlx);

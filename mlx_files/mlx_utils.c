@@ -33,6 +33,7 @@ t_window	*init_mlx(t_map_data *data)
 	mlx = malloc(sizeof(t_window));
 	if (!mlx)
 		return (err_msg("Malloc Failure"), NULL);
+	ft_bzero(mlx, sizeof(t_window));
 	set_mlx_ints(mlx, data);
 	mlx->map = copy_map(data, mlx);
 	if (!mlx->map)
@@ -44,29 +45,50 @@ t_window	*init_mlx(t_map_data *data)
 			mlx->win_width, mlx->win_height, "cub3D");
 	if (!mlx->win_ptr)
 		return (clean_mlx(mlx), NULL);
-	if (create_xpm_image(mlx, data))
+	if (create_xpm_image(mlx, data) || create_frame(mlx))
 		return (clean_mlx(mlx), NULL);
 	init_player(mlx);
 	return (mlx);
 }
 
+int	load_texture(t_window *mlx, t_texture *tex, char *file, char *msg)
+{
+	tex->img = mlx_xpm_file_to_image(mlx->mlx_ptr, file,
+			&tex->width, &tex->height);
+	if (!tex->img)
+		return (err_msg(msg), 1);
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
+			&tex->line_len, &tex->endian);
+	return (0);
+}
+
 int	create_xpm_image(t_window *mlx, t_map_data *data)
 {
-	mlx->easth_xpm = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			data->easth_file, &mlx->img_width, &mlx->img_height);
-	if (!mlx->easth_xpm)
-		return (err_msg("Problem creating east xpm"), 1);
-	mlx->west_xpm = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			data->west_file, &mlx->img_width, &mlx->img_height);
-	if (!mlx->west_xpm)
-		return (err_msg("Problem creating west xpm"), 1);
-	mlx->north_xpm = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			data->north_file, &mlx->img_width, &mlx->img_height);
-	if (!mlx->north_xpm)
-		return (err_msg("Problem creating north xpm"), 1);
-	mlx->south_xpm = mlx_xpm_file_to_image(mlx->mlx_ptr,
-			data->south_file, &mlx->img_width, &mlx->img_height);
-	if (!mlx->south_xpm)
-		return (err_msg("Problem creating south xpm"), 1);
+	if (load_texture(mlx, &mlx->easth, data->easth_file,
+			"Problem creating east xpm"))
+		return (1);
+	mlx->easth_xpm = mlx->easth.img;
+	if (load_texture(mlx, &mlx->west, data->west_file,
+			"Problem creating west xpm"))
+		return (1);
+	mlx->west_xpm = mlx->west.img;
+	if (load_texture(mlx, &mlx->north, data->north_file,
+			"Problem creating north xpm"))
+		return (1);
+	mlx->north_xpm = mlx->north.img;
+	if (load_texture(mlx, &mlx->south, data->south_file,
+			"Problem creating south xpm"))
+		return (1);
+	mlx->south_xpm = mlx->south.img;
+	return (0);
+}
+
+int	create_frame(t_window *mlx)
+{
+	mlx->img = mlx_new_image(mlx->mlx_ptr, mlx->win_width, mlx->win_height);
+	if (!mlx->img)
+		return (err_msg("Problem creating frame image"), 1);
+	mlx->img_addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
+			&mlx->line_length, &mlx->endian);
 	return (0);
 }

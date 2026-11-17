@@ -1,4 +1,4 @@
-#include "../includes/cub3d.h"
+#include "includes/cub3d.h"
 
 typedef struct s_render
 {
@@ -8,34 +8,6 @@ typedef struct s_render
 	int		height;
 	double	hit_x;
 }	t_render;
-
-int	rgb_to_int(int rgb[3])
-{
-	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
-}
-
-int	get_texture_pixel(t_texture *tex, int x, int y)
-{
-	char	*dst;
-
-	if (!tex || !tex->addr)
-		return (COLOR_WHITE);
-	if (x < 0 || x >= tex->width || y < 0 || y >= tex->height)
-		return (0);
-	dst = (char *)tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
-	return (*(unsigned int *)dst);
-}
-
-void	put_pixel(t_window *win, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || x >= win->win_width || y < 0 || y >= win->win_height)
-		return ;
-	dst = win->img_addr + (y * win->line_length
-			+ x * (win->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
 
 void	draw_vertical_stripe(t_window *win, t_render *r, t_texture *tex)
 {
@@ -74,7 +46,7 @@ void	set_texture(t_window *win, t_texture **tex, int side)
 	else if (side == WEST)
 		*tex = &win->west;
 	else
-		*tex = &win->east;
+		*tex = &win->easth;
 }
 
 void	cast_ray(t_window *win, t_render *r, t_texture **tex)
@@ -91,7 +63,11 @@ void	cast_ray(t_window *win, t_render *r, t_texture **tex)
 	ray_dir_y = win->player.dir_x * sin(ray_angle)
 		+ win->player.dir_y * cos(ray_angle);
 	dist_to_wall = perform_dda(win, ray_dir_x, ray_dir_y, &side, &r->hit_x);
+	if (dist_to_wall < 0.0001)
+		dist_to_wall = 0.0001;
 	r->height = (int)(win->win_height / dist_to_wall);
+	if (r->height < 1)
+		r->height = 1;
 	r->start = win->win_height / 2 - r->height / 2;
 	r->end = win->win_height / 2 + r->height / 2;
 	set_texture(win, tex, side);
