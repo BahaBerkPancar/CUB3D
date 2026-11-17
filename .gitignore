@@ -1,0 +1,9 @@
+.DS_Store
+.vscode/
+*.o
+.obj/
+*.a
+cub3D
+*.dSYM/
+# cloned by "make clone"
+libft/
